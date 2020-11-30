@@ -3,5 +3,166 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-  }
+    "ngx-infi-toast": {
+      "projectType": "library",
+      "root": "projects/ngx-infi-toast",
+      "sourceRoot": "projects/ngx-infi-toast/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/ngx-infi-toast/tsconfig.lib.json",
+            "project": "projects/ngx-infi-toast/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-infi-toast/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-infi-toast/src/test.ts",
+            "tsConfig": "projects/ngx-infi-toast/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-infi-toast/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-infi-toast/tsconfig.lib.json",
+              "projects/ngx-infi-toast/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ngx-infi-toast-showcase": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/ngx-infi-toast-showcase",
+      "sourceRoot": "projects/ngx-infi-toast-showcase/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ngx-infi-toast-showcase",
+            "index": "projects/ngx-infi-toast-showcase/src/index.html",
+            "main": "projects/ngx-infi-toast-showcase/src/main.ts",
+            "polyfills": "projects/ngx-infi-toast-showcase/src/polyfills.ts",
+            "tsConfig": "projects/ngx-infi-toast-showcase/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/ngx-infi-toast-showcase/src/favicon.ico",
+              "projects/ngx-infi-toast-showcase/src/assets"
+            ],
+            "styles": [
+              "projects/ngx-infi-toast-showcase/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/ngx-infi-toast-showcase/src/environments/environment.ts",
+                  "with": "projects/ngx-infi-toast-showcase/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ngx-infi-toast-showcase:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ngx-infi-toast-showcase:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ngx-infi-toast-showcase:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-infi-toast-showcase/src/test.ts",
+            "polyfills": "projects/ngx-infi-toast-showcase/src/polyfills.ts",
+            "tsConfig": "projects/ngx-infi-toast-showcase/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-infi-toast-showcase/karma.conf.js",
+            "assets": [
+              "projects/ngx-infi-toast-showcase/src/favicon.ico",
+              "projects/ngx-infi-toast-showcase/src/assets"
+            ],
+            "styles": [
+              "projects/ngx-infi-toast-showcase/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-infi-toast-showcase/tsconfig.app.json",
+              "projects/ngx-infi-toast-showcase/tsconfig.spec.json",
+              "projects/ngx-infi-toast-showcase/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/ngx-infi-toast-showcase/e2e/protractor.conf.js",
+            "devServerTarget": "ngx-infi-toast-showcase:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ngx-infi-toast-showcase:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "ngx-infi-toast"
 }

@@ -1,0 +1,34 @@
+{
+  "name": "ngx-infi-toast",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gitsobek/ngx-infi-toast"
+  },
+  "homepage": "https://gitsobek.github.io/ngx-infi-toast/",
+  "author": {
+    "name": "Piotr Sobuś",
+    "email": "sobus.piotr@gmail.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "push notification",
+    "notification",
+    "window",
+    "pop-up",
+    "popup",
+    "toast",
+    "angular",
+    "rxjs",
+    "ngx",
+    "ng",
+    "ivy"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^11.0.1",
+    "@angular/core": "^11.0.1"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}

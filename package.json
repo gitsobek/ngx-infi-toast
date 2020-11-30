@@ -1,12 +1,35 @@
 {
   "name": "ngx-infi-toast",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "projects/**/*.ts": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "e2e": "ng e2e",
+    "build": "npm run build:lib && npm run build:showcase",
+    "build:lib": "ng build ngx-infi-toast --prod && npm run copy:readme",
+    "build:showcase": "ng build --prod ngx-infi-toast-showcase --base-href='https://gitsobek.github.io/ngx-infi-toast/'",
+    "publish:demo": "npx angular-cli-ghpages --dir=dist/ngx-infi-toast-showcase",
+    "copy:readme": "copyfiles ./README.md ./dist/ngx-infi-toast",
+    "copy:assets": "cp -R projects/ngx-infi-toast/src/assets dist/ngx-infi-toast/assets",
+    "format:check": "prettier --list-different 'projects/**/*.ts'",
+    "format:write": "prettier --write 'projects/**/*.ts'",
+    "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate"
   },
   "private": true,
   "dependencies": {
@@ -23,11 +46,18 @@
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "~0.1100.2",
     "@angular/cli": "~11.0.2",
     "@angular/compiler-cli": "~11.0.1",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@commitlint/prompt": "^11.0.0",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
+    "all-contributors-cli": "^6.19.0",
     "codelyzer": "^6.0.0",
+    "copyfiles": "^2.4.1",
+    "husky": "^4.3.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.1.0",
@@ -35,6 +65,8 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "ng-packagr": "^11.0.0",
+    "prettier": "^2.2.1",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
