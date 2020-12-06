@@ -11,7 +11,7 @@ Neat, fully customizable and lightweight notifications for you application.<br><
 
 <p align="center">
  <img src="https://raw.githubusercontent.com/gitsobek/ngx-infi-toast/master/presentation.gif">
-</p><br>
+</p>
 
 ## Table of Contents
 
@@ -67,7 +67,7 @@ export class PaymentComponent implements OnInit {
 You can pass your own custom configuration object as a second parameter of the function. Available properties are following: 
 
 | Name            | Type                       | Description                                                         |
-|:---------------:|:--------------------------:|:-------------------------------------------------------------------:|
+|:----------------|:---------------------------|:--------------------------------------------------------------------|
 | width           | string                     | width of displayed notification                                     |
 | contentColor    | string                     | color of content text                                               |
 | iconColor       | string                     | color of close icon                                                 |
@@ -78,7 +78,7 @@ You can pass your own custom configuration object as a second parameter of the f
 ### Handlers
 At this moment, function `open` returns a handler object which will be helpful to use for listening on specific actions related to a single notification.
 
-* `onClose()` - emits passed data in the configuration object on notification closure, if no data is passed to the configuration object, it will emit ```true``` by default, this can be generally used to keep track of the data associated to a specific notification
+* `onClose()` - emits passed data in the configuration object on notification closure, if no data is passed to the configuration object, it will emit ```true``` by default, this can be generally used to keep track of the data associated to a specific notification.<br>
 Example: 
 ```ts
 const toast = this.toastService.open(
@@ -130,7 +130,7 @@ import { NgxInfiToastModule } from 'ngx-infi-toast';
 export class AppModule {}
 ```
 
-Important: global and component level configuration are merged together, therefore component level values will override global ones in case there is a property that is included in both configuration objects.
+**Important:** global and component level configuration are merged together, therefore component level values will override global ones in case there is a property that is included in both configuration objects.
 
 ## Demo
 The showcase of the library can be found under the following [link](https://gitsobek.github.io/ngx-infi-toast/).
