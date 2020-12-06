@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+.container {
+  font-family: 'Roboto', sans-serif;
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 500px;
+  height: 150px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-sizing: border-box;
+  box-shadow: 1px 1px 6px -2px grey;
+  padding: 16px 20px;
+  animation: toastIn 0.5s;
+  will-change: transform;
+
+  p {
+    margin: 0;
+  }
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.row-1 {
+  height: 20px;
+  justify-content: space-between;
+}
+
+.row-2 {
+  align-items: flex-start;
+}
+
+.toast-header-text {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.toast-text {
+  font-size: 14px;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  /*! autoprefixer: off */
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
+.close-btn {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@keyframes toastIn {
+  from {
+    top: -100px;
+    transform: translateX(-50%);
+    opacity: 0;
+  }
+  to {
+    top: 10px;
+    transform: translateX(-50%);
+    opacity: 1;
+  }
+}
+
+@keyframes toastOut {
+  to {
+    transform: translateX(-50%) translateY(-100px);
+    opacity: 0;
+  }
+}
+
+@keyframes toastMoveDown {
+  to {
+    transform: translateX(-50%) translateY(170px);
+  }
+}
+
+@keyframes toastMoveUp {
+  to {
+    transform: translateX(-50%) translateY(-150px);
+  }
+}

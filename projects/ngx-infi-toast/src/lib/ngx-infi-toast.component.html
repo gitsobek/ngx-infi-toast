@@ -1,0 +1,29 @@
+<div
+  *ngFor="let toast of toastQueue; let idx = index"
+  (animationend)="onAnimationDone($event, idx, toast)"
+  [style.width]="toast.width ? toast.width : '350px'"
+  class="container"
+>
+  <ng-container *ngTemplateOutlet="toastTpl; context: { $implicit: toast, idx: idx }"></ng-container>
+</div>
+
+<ng-template #toastTpl let-payload let-idx="idx">
+  <div class="row row-1">
+    <p [style.color]="payload.headerColor ? payload.headerColor : '#000'" class="toast-header-text">
+      {{ payload.headerText }}
+    </p>
+    <span [style.color]="payload.iconColor ? payload.iconColor : '#5F95E1'" class="close-btn" (click)="close(idx)"
+      >&#x2715;</span
+    >
+  </div>
+
+  <div [style.marginTop]="payload.headerText ? '10px' : '5px'" class="row row-2">
+    <p
+      [style.paddingRight]="payload.headerText ? '0' : '15px'"
+      [style.color]="payload.contentColor ? payload.contentColor : '#777777'"
+      class="toast-text"
+    >
+      {{ payload.content }}
+    </p>
+  </div>
+</ng-template>

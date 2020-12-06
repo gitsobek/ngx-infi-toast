@@ -1,27 +1,144 @@
-# NgxInfiToast
+<p align="center">
+ <img width="80%" height="80%" src="https://raw.githubusercontent.com/gitsobek/ngx-infi-toast/master/logo.svg?sanitize=true">
+</p>
+&nbsp;
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.2.
+[![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg?style=flat-square)]()
+[![PRs](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)]()
+[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-## Development server
+Neat, fully customizable and lightweight notifications for you application.<br><br>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+<p align="center">
+ <img src="https://raw.githubusercontent.com/gitsobek/ngx-infi-toast/master/presentation.gif">
+</p><br>
 
-## Code scaffolding
+## Table of Contents
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Demo](#demo)
+- [Future plans](#plans)
+- [Contribution](#contribution)
 
-## Build
+## Installation
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Using npm:
 
-## Running unit tests
+`npm install ngx-infi-toast --save`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Configuration
+In order to display your first toast, you have to import NgxInfiToast module in the root module:
 
-## Running end-to-end tests
+```ts
+import { NgModule } from '@angular/core';
+import { AppComponent } from './app.component';
+import { NgxInfiToastModule } from 'ngx-infi-toast';
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    // ...,
+    NgxInfiToastModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+```
 
-## Further help
+Inject NgxInfiToastService into your component and display a toast notification with a specified message:
+```ts
+import { NgxInfiToastService } from 'ngx-infi-toast';
+ 
+export class PaymentComponent implements OnInit {
+  constructor(private toastService: NgxInfiToastService) {}
+ 
+  ngOnInit() {}
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+  onPaymentReceived(): void {
+      this.toastService.open('Payment has been succesfully processed!');
+      // ..
+  }
+}
+```
+
+### Provide custom configuration
+You can pass your own custom configuration object as a second parameter of the function. Available properties are following: 
+
+| Name            | Type                       | Description                                                         |
+|:---------------:|:--------------------------:|:-------------------------------------------------------------------:|
+| width           | string                     | width of displayed notification                                     |
+| contentColor    | string                     | color of content text                                               |
+| iconColor       | string                     | color of close icon                                                 |
+| headerText      | string                     | top header text                                                     |
+| headerColor     | string                     | color of header text                                                |
+| data            | any                        | data to be emitted in onClose observable after closing notification |
+
+### Handlers
+At this moment, function `open` returns a handler object which will be helpful to use for listening on specific actions related to a single notification.
+
+* `onClose()` - emits passed data in the configuration object on notification closure, if no data is passed to the configuration object, it will emit ```true``` by default, this can be generally used to keep track of the data associated to a specific notification
+Example: 
+```ts
+const toast = this.toastService.open(
+    'Payment has been succesfully processed!',
+    {
+        width: '500px',
+        headerText: 'Payment received',
+        data: {
+            id: 1,
+            type: 'payment',
+            status: 'success'
+        }
+    }
+);
+
+toast.onClose().subscribe(data => {
+    // data is equal to:
+    // {
+    //    id: 1,
+    //    type: 'payment',
+    //    status: 'success'
+    // }
+    // do something here...
+});
+```
+
+### Global configuration
+You can provide a global configuration which will be applied for all notifications in your application. All available properties are listed in the example presented below.
+Example: 
+```ts
+import { NgModule } from '@angular/core';
+import { AppComponent } from './app.component';
+import { NgxInfiToastModule } from 'ngx-infi-toast';
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    // ...,
+    NgxInfiToastModule.forRoot({
+        width: '500px',
+        contentColor: '#000',
+        iconColor: '#000',
+        headerColor: 'red'
+    })
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+```
+
+Important: global and component level configuration are merged together, therefore component level values will override global ones in case there is a property that is included in both configuration objects.
+
+## Demo
+The showcase of the library can be found under the following [link](https://gitsobek.github.io/ngx-infi-toast/).
+
+## Future plans
+- alignment configuration (left / center / right)
+- possibility to stack toasts or show them one by one
+- display provided template or component in the toast
+
+## Contribution
+This project follows the [all-contributors](https://allcontributors.org/docs/en/emoji-key) specification. Contributions of any kind are welcome!
