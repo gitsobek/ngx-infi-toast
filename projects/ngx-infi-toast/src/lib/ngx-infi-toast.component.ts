@@ -67,11 +67,12 @@ export class NgxInfiToastComponent implements AfterViewInit {
     for (let i = startIdx, { length } = this.container; i < length; i++) {
       if (this.container[i].style.animation) {
         this.container[i].style.animation = 'none';
-        this.container[i].offsetHeight;
+        /* Force reflow to restart animation */
+        this.container[i].getClientRects();
       }
 
-      this.container[i].style.animation = `0.3s ease 0s 1 normal forwards running ${animationName}`;
       this.container[i].style.top = i * 160 + 'px';
+      this.container[i].style.animation = `0.3s ease 0s 1 normal forwards running ${animationName}`;
     }
   }
 

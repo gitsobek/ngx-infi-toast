@@ -7,7 +7,7 @@
 [![PRs](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)]()
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-Neat, fully customizable and lightweight notifications for you application.<br><br>
+Neat, fully customizable and lightweight notifications for your application.<br><br>
 
 <p align="center">
  <img src="https://raw.githubusercontent.com/gitsobek/ngx-infi-toast/master/presentation.gif">
@@ -68,17 +68,17 @@ You can pass your own custom configuration object as a second parameter of the f
 
 | Name            | Type                       | Description                                                         |
 |:----------------|:---------------------------|:--------------------------------------------------------------------|
-| width           | string                     | width of displayed notification                                     |
-| contentColor    | string                     | color of content text                                               |
-| iconColor       | string                     | color of close icon                                                 |
+| width           | string                     | width of displayed notification (default: 350px)                    |
+| contentColor    | string                     | color of content text (default: #777777)                            |
+| iconColor       | string                     | color of close icon (default: #5F95E1)                              |
 | headerText      | string                     | top header text                                                     |
-| headerColor     | string                     | color of header text                                                |
+| headerColor     | string                     | color of header text (default: #000)                                |
 | data            | any                        | data to be emitted in onClose observable after closing notification |
 
 ### Handlers
 At this moment, function `open` returns a handler object which will be helpful to use for listening on specific actions related to a single notification.
 
-* `onClose()` - emits passed data in the configuration object on notification closure, if no data is passed to the configuration object, it will emit ```true``` by default, this can be generally used to keep track of the data associated to a specific notification.<br>
+* `onClose()` - emits passed data in the configuration object on notification closure, if no data is passed to the configuration object, it will emit ```true``` by default, this can be generally used to keep track of the data associated with a specific notification.<br>
 Example: 
 ```ts
 const toast = this.toastService.open(
@@ -130,7 +130,7 @@ import { NgxInfiToastModule } from 'ngx-infi-toast';
 export class AppModule {}
 ```
 
-**Important:** global and component level configuration are merged together, therefore component level values will override global ones in case there is a property that is included in both configuration objects.
+**Important:** global and component level configuration are merged together, therefore component level values will override global ones in case there is a common property that is included in both configuration objects.
 
 ## Demo
 The showcase of the library can be found under the following [link](https://gitsobek.github.io/ngx-infi-toast/).
