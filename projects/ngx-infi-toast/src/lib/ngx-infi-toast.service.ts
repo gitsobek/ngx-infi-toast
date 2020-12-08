@@ -12,7 +12,7 @@ import { Subject, Subscription, Observable } from 'rxjs';
 import { NgxInfiToastComponent } from './ngx-infi-toast.component';
 import { ToastConfig, ToastHandler, ToastBundle, GlobalToastConfig } from './_core/models/Toast';
 import { AbstractCentralToast } from './_core/abstracts/toast.abstract';
-import { USER_TOAST_CONFIG } from './_core/configs';
+import { USER_TOAST_CONFIG, DEFAULT_TOAST_CONFIG } from './_core/configs';
 
 @Injectable({
   providedIn: 'root',
@@ -126,6 +126,7 @@ export class NgxInfiToastService extends AbstractCentralToast {
     globalConfig: GlobalToastConfig | null
   ): ToastConfig | {} {
     return {
+      ...DEFAULT_TOAST_CONFIG,
       ...(globalConfig && { ...globalConfig }),
       ...(localConfig && { ...localConfig }),
     };

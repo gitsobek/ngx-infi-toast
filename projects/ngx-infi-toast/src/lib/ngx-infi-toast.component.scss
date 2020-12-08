@@ -4,8 +4,6 @@
   font-family: 'Roboto', sans-serif;
   position: fixed;
   top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
   max-width: 500px;
   height: 150px;
   background-color: #fff;
@@ -59,34 +57,52 @@
   }
 }
 
+.animation-left {
+  --axisX: 5px;
+  left: 5px;
+  transform: translateX(var(--axisX));
+}
+
+.animation-center {
+  --axisX: -50%;
+  left: 50%;
+  transform: translateX(var(--axisX));
+}
+
+.animation-right {
+  --axisX: -100%;
+  left: calc(100% - 10px);
+  transform: translateX(var(--axisX));
+}
+
 @keyframes toastIn {
   from {
     top: -100px;
-    transform: translateX(-50%);
+    transform: translateX(var(--axisX));
     opacity: 0;
   }
   to {
     top: 10px;
-    transform: translateX(-50%);
+    transform: translateX(var(--axisX));
     opacity: 1;
   }
 }
 
 @keyframes toastOut {
   to {
-    transform: translateX(-50%) translateY(-100px);
+    transform: translateX(var(--axisX)) translateY(-100px);
     opacity: 0;
   }
 }
 
 @keyframes toastMoveDown {
   to {
-    transform: translateX(-50%) translateY(170px);
+    transform: translateX(var(--axisX)) translateY(170px);
   }
 }
 
 @keyframes toastMoveUp {
   to {
-    transform: translateX(-50%) translateY(-150px);
+    transform: translateX(var(--axisX)) translateY(-150px);
   }
 }

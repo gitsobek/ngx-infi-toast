@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef, HostListener, OnInit, AfterViewInit } from '@angular/core';
+import { Component, Input, ElementRef, HostListener, AfterViewInit } from '@angular/core';
 import { ToastBundle } from './_core/models/Toast';
 import { Subject } from 'rxjs';
 
