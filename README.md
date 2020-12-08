@@ -111,7 +111,7 @@ You can provide a global configuration which will be applied for all notificatio
 | Name            | Type                        | Description                                                         |
 |:----------------|:----------------------------|:--------------------------------------------------------------------|
 | width           | string                      | width of displayed notification (default: 350px)                    |
-| position        | 'left' | 'center' | 'right' | notification alignment (default: center)                            |
+| position        | 'left', 'center', 'right'   | notification alignment (default: center)                            |
 | contentColor    | string                      | color of content text (default: #777777)                            |
 | iconColor       | string                      | color of close icon (default: #5F95E1)                              |
 | headerColor     | string                      | color of header text (default: #000)                                |
